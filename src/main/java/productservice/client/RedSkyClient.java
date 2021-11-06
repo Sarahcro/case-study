@@ -43,18 +43,18 @@ public class RedSkyClient {
     URI uri = UriComponentsBuilder.fromHttpUrl(productDetailsUrl).queryParam("tcin", id)
         .queryParam("key", apiKey).build().toUri();
     var request = RequestEntity.get(uri).accept(MediaType.APPLICATION_JSON).build();
-    return executeRequest(request);
+    return executeRequest(request, id);
   }
 
-  private RedSkyProductResponseDto executeRequest(final RequestEntity<Void> request)
+  private RedSkyProductResponseDto executeRequest(final RequestEntity<Void> request, String id)
       throws BaseException {
     try {
       return restTemplate.exchange(request, RedSkyProductResponseDto.class).getBody();
     } catch (NotFound nf) {
       log.error("RedSky returned Not Found. request: [{}], response: [{}]", request.toString(),
           nf.getResponseBodyAsString(), nf);
-      throw ExceptionFactory.createResourceNotFoundException("The requested product was not found",
-          nf);
+      var msg = String.format("Product %s was not found", id);
+      throw ExceptionFactory.createResourceNotFoundException(msg, nf);
     } catch (RestClientException ex) {
       log.error("Unexpected error occurred when calling RedSky, request: [{}], response: [{}]",
           request.toString(), ex.getMessage(), ex);

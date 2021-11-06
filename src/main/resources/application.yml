@@ -1,6 +1,13 @@
 spring:
   application:
     name: Product Service
+  data:
+    cassandra:
+      username: sarahcro
+      password: root
+      port: 7000
+      contactPoints: 127.0.0.1
+      keySpaceName: prices
 
 server:
   port: 8080

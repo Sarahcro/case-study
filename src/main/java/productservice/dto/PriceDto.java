@@ -6,6 +6,6 @@ import lombok.Data;
 public class PriceDto {
 
   private Double value;
-  private String currencyCode;
+  private String currency_code;
 
 }

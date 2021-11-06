@@ -1,8 +1,11 @@
 package productservice.exception;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.http.HttpStatus;
 
-
+@EqualsAndHashCode(callSuper = false)
+@Data
 public class BaseException extends Exception {
 
   private final String code;

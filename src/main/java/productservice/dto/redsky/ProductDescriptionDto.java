@@ -6,6 +6,6 @@ import lombok.Data;
 public class ProductDescriptionDto {
 
   private String title;
-  private String downstream_description;
+  private String downstreamDescription;
 
 }

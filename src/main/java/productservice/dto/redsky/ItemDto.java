@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class ItemDto {
 
-  private ProductDescriptionDto product_description;
+  private ProductDescriptionDto productDescription;
 }

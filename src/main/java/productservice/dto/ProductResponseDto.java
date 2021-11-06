@@ -7,5 +7,5 @@ public class ProductResponseDto {
 
   private Long id;
   private String name;
-  private PriceDto currentPrice;
+  private PriceDto current_price;
 }
