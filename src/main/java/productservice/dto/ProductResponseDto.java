@@ -1,11 +1,14 @@
 package productservice.dto;
 
+import java.util.List;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
-public class ProductResponseDto {
+@EqualsAndHashCode(callSuper = true)
+public class ProductResponseDto extends UpdateProductDto {
 
-  private Long id;
+  private String id;
   private String name;
-  private PriceDto current_price;
+
 }

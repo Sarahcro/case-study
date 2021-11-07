@@ -16,7 +16,7 @@ import productservice.exception.ExceptionFactory;
 
 @Component
 @Slf4j
-//add circuitbreaker
+//todo add circuitbreaker
 public class RedSkyClient {
 
   private final RestTemplate restTemplate;

@@ -1,12 +1,22 @@
 package productservice.config;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.cassandra.config.AbstractCassandraConfiguration;
 import org.springframework.data.cassandra.config.CqlSessionFactoryBean;
+import org.springframework.data.cassandra.config.SchemaAction;
+import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
 
+/**
+ * Note
+ */
+@EqualsAndHashCode(callSuper = true)
 @Configuration
+@Data
+@EnableCassandraRepositories(basePackages = "productservice.repository")
 @ConfigurationProperties(value = "spring.data.cassandra")
 public class CassandraConfig extends AbstractCassandraConfiguration {
 
@@ -15,6 +25,7 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
   private int port;
   private String username;
   private String password;
+  private SchemaAction schemaAction;
 
   @Override
   protected String getKeyspaceName() {
@@ -29,4 +40,20 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     session.setPassword(password);
     return session;
   }
+
+  @Override
+  public SchemaAction getSchemaAction(){
+    return schemaAction;
+  }
+  
+  @Override
+  public String[] getEntityBasePackages(){
+    return new String[] {"productservice.entity"};
+  }
+
+ //@Override
+ //protected List<CreateKeyspaceSpecification> getKeyspaceCreations(){
+   //var specification = CreateKeyspaceSpecification.createKeyspace(keySpaceName);
+    //return List.of(specification);
+//  }
 }

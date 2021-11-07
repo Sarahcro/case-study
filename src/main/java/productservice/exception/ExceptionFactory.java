@@ -12,4 +12,8 @@ public class ExceptionFactory {
     return new ExternalServiceException(message, cause);
   }
 
+  public static InvalidInputException createInvalidInputException(String message) {
+    return new InvalidInputException(message);
+  }
+
 }

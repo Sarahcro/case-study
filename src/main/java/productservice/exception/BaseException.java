@@ -17,4 +17,10 @@ public class BaseException extends Exception {
     this.httpStatus = httpStatus;
   }
 
+  BaseException(final String message, final String code, final HttpStatus httpStatus){
+    super(message);
+    this.code = code;
+    this.httpStatus = httpStatus;
+  }
+
 }

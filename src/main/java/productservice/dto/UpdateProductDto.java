@@ -1,17 +1,15 @@
 package productservice.dto;
 
+import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class PriceDto {
+public class UpdateProductDto {
 
-  @NotNull
-  private Double value;
-
+  @Valid
   @NotEmpty
-  private String currencyCode;
+  private List<PriceDto> currentPrices;
 
 }

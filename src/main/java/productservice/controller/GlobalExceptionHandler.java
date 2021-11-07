@@ -32,4 +32,5 @@ public class GlobalExceptionHandler {
     return new ResponseEntity<>(responseDto, be.getHttpStatus());
 
   }
+  //TODO add handler for MethodArgumentNotValidException
 }

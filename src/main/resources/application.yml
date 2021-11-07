@@ -3,12 +3,16 @@ spring:
     name: Product Service
   data:
     cassandra:
-      username: sarahcro
+      username: root
       password: root
-      port: 7000
+      port: 9042
       contactPoints: 127.0.0.1
       keySpaceName: prices
-
+      schemaAction: CREATE_IF_NOT_EXISTS
+datastax-java-driver:
+  basic:
+    request:
+      timeout: 20 seconds
 server:
   port: 8080
 
