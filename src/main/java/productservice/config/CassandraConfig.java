@@ -2,9 +2,12 @@ package productservice.config;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.cassandra.config.AbstractCassandraConfiguration;
 import org.springframework.data.cassandra.config.CqlSessionFactoryBean;
 import org.springframework.data.cassandra.config.SchemaAction;
@@ -34,6 +37,7 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
 
   @Bean
   @Override
+  @DependsOn("container")
   public CqlSessionFactoryBean cassandraSession() {
     CqlSessionFactoryBean session = super.cassandraSession();
     session.setUsername(username);
