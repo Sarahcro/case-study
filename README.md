@@ -1,6 +1,6 @@
-##Case Study - Sarah Croteau
+## Case Study - Sarah Croteau
 
-###Running this service
+### Running this service
 - Start up the DB instance
   - `docker run --name cassandra -p 9042:9042 -d cassandra`
 - Run ProductServiceApplication.java
@@ -24,12 +24,12 @@
       ]
     }'
 
-###Running the tests
+### Running the tests
  - src/test/groovy contains all tests.
  - ProductITSpec contains integration tests. All others are unit tests
  - Note: Running the entire ProductITSpec causes one test to fail due to NoNodeAvailableException. That test works when run individually, so something is wrong in the testcontainer when starting up and shutting down between tests. I ran out of time so was unable to solve that issue.
 
-###Some considerations
+### Some possible enhancements/considerations
 - Would want to mask the creds in the yml
 - The prompt suggested that every product should have one price entry in the DB
   - I felt that if multiple currencies are being supported, we should allow for the DB to hold several currency codes for a single product
@@ -42,7 +42,7 @@
   - Would want to research best practices on how schemas, tables should be structured and etc.
   - I did what I did to get it working with the limited time I had to learn this, so I recognize my setup was probably un-ideal
   
-###Resources Used
+### Resources Used
 (I had never worked with Cassandra before this, so required a bit of research to get that going)
 - https://www.baeldung.com/spring-data-cassandra-tutorial
 - https://www.baeldung.com/spring-data-cassandra-test-containers
