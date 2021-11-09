@@ -1,20 +1,22 @@
 package productservice.config;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
-import org.testcontainers.containers.GenericContainer;
-
-import java.time.Duration;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.data.cassandra.config.CqlSessionFactoryBean;
 
 @Configuration
-@Slf4j
-public class CassandraTestConfig {
+public class CassandraTestConfig extends CassandraConfig {
 
     @Bean
-    public FixedPortCassandraContainer container(){
+    @Override
+    @DependsOn("container")
+    public CqlSessionFactoryBean cassandraSession() {
+        return super.cassandraSession();
+    }
+
+    @Bean
+    public FixedPortCassandraContainer container() {
         var cassandraContainer = new FixedPortCassandraContainer();
         cassandraContainer.start();
         return cassandraContainer;

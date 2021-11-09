@@ -5,8 +5,8 @@ spring:
     cassandra:
       username: root
       password: root
-      port: 9042
-      contact-points: host.docker.internal,192.168.1.57
+      port: 9242
+      contact-points: localhost
       keySpaceName: local_test
       schemaAction: CREATE_IF_NOT_EXISTS
 datastax-java-driver:
@@ -16,6 +16,6 @@ datastax-java-driver:
 
 services:
   redSky:
-    baseUrl: http://localhost:6767
+    baseUrl: http://localhost:6767/redsky
     productDetails: ${services.redSky.baseUrl}/redsky_aggregations/v1/redsky/case_study_v1
-    key: 3yUxt7WltYG7MFKPp7uyELi1K40ad2ys
+    key: testApiKey

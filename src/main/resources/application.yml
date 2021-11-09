@@ -9,10 +9,7 @@ spring:
       contactPoints: 127.0.0.1
       keySpaceName: prices
       schemaAction: CREATE_IF_NOT_EXISTS
-datastax-java-driver:
-  basic:
-    request:
-      timeout: 20 seconds
+
 server:
   port: 8080
 

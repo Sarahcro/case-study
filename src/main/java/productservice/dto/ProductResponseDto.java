@@ -1,14 +1,21 @@
 package productservice.dto;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProductResponseDto extends UpdateProductDto {
 
-  private String id;
-  private String name;
+    /**
+     * The product id
+     */
+    private String id;
 
+    /**
+     * The product name/title
+     */
+    private String name;
 }

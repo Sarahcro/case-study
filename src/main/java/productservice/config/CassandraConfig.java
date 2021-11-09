@@ -13,14 +13,14 @@ import org.springframework.data.cassandra.config.CqlSessionFactoryBean;
 import org.springframework.data.cassandra.config.SchemaAction;
 import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
 
-/**
- * Note
- */
+import java.util.List;
+
 @EqualsAndHashCode(callSuper = true)
 @Configuration
 @Data
 @EnableCassandraRepositories(basePackages = "productservice.repository")
 @ConfigurationProperties(value = "spring.data.cassandra")
+@Profile("!itspec")
 public class CassandraConfig extends AbstractCassandraConfiguration {
 
   private String keySpaceName;
@@ -37,11 +37,13 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
 
   @Bean
   @Override
-  @DependsOn("container")
   public CqlSessionFactoryBean cassandraSession() {
     CqlSessionFactoryBean session = super.cassandraSession();
     session.setUsername(username);
     session.setPassword(password);
+    session.setKeyspaceStartupScripts(List.of("CREATE KEYSPACE IF NOT EXISTS " + keySpaceName +
+            " WITH replication = \n" +
+            "{'class':'SimpleStrategy','replication_factor':'1'};"));
     return session;
   }
 
@@ -55,9 +57,4 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     return new String[] {"productservice.entity"};
   }
 
- //@Override
- //protected List<CreateKeyspaceSpecification> getKeyspaceCreations(){
-   //var specification = CreateKeyspaceSpecification.createKeyspace(keySpaceName);
-    //return List.of(specification);
-//  }
 }

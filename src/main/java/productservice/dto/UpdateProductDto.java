@@ -8,6 +8,9 @@ import lombok.Data;
 @Data
 public class UpdateProductDto {
 
+  /**
+   * List of price/currency pairs
+   */
   @Valid
   @NotEmpty
   private List<PriceDto> currentPrices;
