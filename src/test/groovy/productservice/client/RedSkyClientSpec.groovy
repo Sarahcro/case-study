@@ -6,9 +6,9 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.client.HttpClientErrorException
 import org.springframework.web.client.RestClientException
 import org.springframework.web.client.RestTemplate
-import productservice.dto.redsky.ItemDto
-import productservice.dto.redsky.ProductDescriptionDto
-import productservice.dto.redsky.ProductDto
+import productservice.dto.redsky.RedSkyItemDto
+import productservice.dto.redsky.RedSkyProductDescriptionDto
+import productservice.dto.redsky.RedSkyProductDto
 import productservice.dto.redsky.RedSkyDataDto
 import productservice.dto.redsky.RedSkyProductResponseDto
 import productservice.exception.ExternalServiceException
@@ -27,7 +27,7 @@ class RedSkyClientSpec extends Specification {
         given: 'a productId'
         def id = "111111"
 
-        def redskyDetails = new RedSkyProductResponseDto(data: new RedSkyDataDto(product: new ProductDto(tcin: id, item: new ItemDto(productDescription: new ProductDescriptionDto(title: "Test Product")))))
+        def redskyDetails = new RedSkyProductResponseDto(data: new RedSkyDataDto(product: new RedSkyProductDto(tcin: id, item: new RedSkyItemDto(productDescription: new RedSkyProductDescriptionDto(title: "Test Product")))))
 
         when: 'getProductDetails is called'
         def response = redSkyClient.getProductDetails(id)

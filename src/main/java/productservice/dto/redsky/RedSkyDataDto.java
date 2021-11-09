@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class RedSkyDataDto {
 
-  private ProductDto product;
+  private RedSkyProductDto product;
 }

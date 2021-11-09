@@ -2,10 +2,10 @@ package productservice.mapper
 
 import org.mapstruct.factory.Mappers
 import productservice.dto.PriceDto
-import productservice.dto.redsky.ItemDto
-import productservice.dto.redsky.ProductDescriptionDto
-import productservice.dto.redsky.ProductDto
+import productservice.dto.redsky.RedSkyItemDto
+import productservice.dto.redsky.RedSkyProductDto
 import productservice.dto.redsky.RedSkyDataDto
+import productservice.dto.redsky.RedSkyProductDescriptionDto
 import productservice.dto.redsky.RedSkyProductResponseDto
 import productservice.entity.Price
 import spock.lang.Specification
@@ -16,7 +16,7 @@ class ProductMapperSpec extends Specification {
 
     def 'can map product details and prices to a product response'(){
         given: 'RedSkyProductDetails and Price List'
-        def redskyDetails = new RedSkyProductResponseDto(data: new RedSkyDataDto(product: new ProductDto(tcin: "555555", item: new ItemDto(productDescription: new ProductDescriptionDto(title: "Test Product")))))
+        def redskyDetails = new RedSkyProductResponseDto(data: new RedSkyDataDto(product: new RedSkyProductDto(tcin: "555555", item: new RedSkyItemDto(productDescription: new RedSkyProductDescriptionDto(title: "Test Product")))))
         def price1 = new Price(value: 100.95, currencyCode: 'USD')
         def price2 = new Price(value: 102.98, currencyCode: 'CAD')
         def prices = [price1, price2]

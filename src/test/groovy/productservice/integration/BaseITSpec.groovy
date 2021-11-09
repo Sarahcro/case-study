@@ -2,9 +2,6 @@ package productservice.integration
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.tomakehurst.wiremock.WireMockServer
-import com.github.tomakehurst.wiremock.core.WireMockConfiguration
-import com.github.tomakehurst.wiremock.junit.WireMockRule
-import org.junit.Rule
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
@@ -17,7 +14,7 @@ import spock.lang.Specification
 
 @Testcontainers
 @ActiveProfiles('itspec')
-@SpringBootTest(webEnvironment  = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class BaseITSpec extends Specification {
 
     MockMvc mockMvc
@@ -37,8 +34,9 @@ class BaseITSpec extends Specification {
         mockMvc = MockMvcBuilders.webAppContextSetup(context).build()
 
     }
-    def cleanup(){
-        container.stop()
+
+    def cleanup() {
         wireMockServer.stop()
+        container.stop()
     }
 }

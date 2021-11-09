@@ -5,10 +5,10 @@ import org.springframework.http.HttpStatus
 import productservice.client.RedSkyClient
 import productservice.dto.PriceDto
 import productservice.dto.UpdateProductDto
-import productservice.dto.redsky.ItemDto
-import productservice.dto.redsky.ProductDescriptionDto
-import productservice.dto.redsky.ProductDto
+import productservice.dto.redsky.RedSkyProductDto
 import productservice.dto.redsky.RedSkyDataDto
+import productservice.dto.redsky.RedSkyItemDto
+import productservice.dto.redsky.RedSkyProductDescriptionDto
 import productservice.dto.redsky.RedSkyProductResponseDto
 import productservice.entity.Price
 import productservice.exception.InvalidInputException
@@ -28,7 +28,7 @@ class ProductServiceSpec extends Specification {
         given: 'a product id'
         def id = "12345"
 
-        def redskyDetails = new RedSkyProductResponseDto(data: new RedSkyDataDto(product: new ProductDto(tcin: id, item: new ItemDto(productDescription: new ProductDescriptionDto(title: "Test Product")))))
+        def redskyDetails = new RedSkyProductResponseDto(data: new RedSkyDataDto(product: new RedSkyProductDto(tcin: id, item: new RedSkyItemDto(productDescription: new RedSkyProductDescriptionDto(title: "Test Product")))))
         def price1 = new Price(value: 100.95, currencyCode: 'USD')
         def price2 = new Price(value: 102.98, currencyCode: 'CAD')
         when: "getProductDetails is called"
@@ -52,7 +52,7 @@ class ProductServiceSpec extends Specification {
         given: 'a product id'
         def id = "12345"
 
-        def redskyDetails = new RedSkyProductResponseDto(data: new RedSkyDataDto(product: new ProductDto(tcin: id, item: new ItemDto(productDescription: new ProductDescriptionDto(title: "Test Product")))))
+        def redskyDetails = new RedSkyProductResponseDto(data: new RedSkyDataDto(product: new RedSkyProductDto(tcin: id, item: new RedSkyItemDto(productDescription: new RedSkyProductDescriptionDto(title: "Test Product")))))
 
         when: "getProductDetails is called"
         def response = productService.getProductDetails(id)

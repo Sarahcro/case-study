@@ -1,6 +1,5 @@
 package productservice.client;
 
-import java.net.URI;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
@@ -14,9 +13,10 @@ import productservice.dto.redsky.RedSkyProductResponseDto;
 import productservice.exception.BaseException;
 import productservice.exception.ExceptionFactory;
 
+import java.net.URI;
+
 @Component
 @Slf4j
-//todo add circuitbreaker
 public class RedSkyClient {
 
   private final RestTemplate restTemplate;

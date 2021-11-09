@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Data;
 
 @Data
-public class ProductDescriptionDto {
+public class RedSkyProductDescriptionDto {
 
   private String title;
 

@@ -10,6 +10,6 @@ public class FixedPortCassandraContainer extends CassandraContainer {
 
     public FixedPortCassandraContainer(){
         super("cassandra:3");
-        this.addFixedExposedPort(9242, 9042);
+        this.addFixedExposedPort(9142, 9042);
     }
 }

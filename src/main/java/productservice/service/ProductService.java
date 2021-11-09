@@ -3,6 +3,7 @@ package productservice.service;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import productservice.client.RedSkyClient;
 import productservice.dto.PriceDto;
 import productservice.dto.ProductResponseDto;
@@ -48,6 +49,7 @@ public class ProductService {
    * @param productId     the productId
    * @throws BaseException if request was invalid
    */
+  @Transactional
   public void updateProductDetails(UpdateProductDto updateRequest, String productId)
       throws BaseException {
     var newPrices = updateRequest.getCurrentPrices();

@@ -2,20 +2,18 @@ package productservice.integration
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import productservice.dto.PriceDto
 import productservice.dto.UpdateProductDto
 import productservice.entity.Price
 import productservice.repository.PriceRepository
 import wiremock.org.apache.http.HttpHeaders
 
-import static com.github.tomakehurst.wiremock.client.WireMock.get
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
+import static com.github.tomakehurst.wiremock.client.WireMock.get
 import static org.hamcrest.Matchers.hasSize
-
-
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 class ProductITSpec extends BaseITSpec {
 
@@ -33,8 +31,8 @@ class ProductITSpec extends BaseITSpec {
 
         wireMockServer.stubFor(get("/redsky/redsky_aggregations/v1/redsky/case_study_v1?tcin=$id&key=testApiKey")
                 .willReturn(aResponse().withStatus(200)
-                .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .withBodyFile("redsky/sampleResponse.json")))
+                        .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                        .withBodyFile("redsky/sampleResponse.json")))
 
         when: 'request is excecuted'
         def response = mockMvc.perform(request)

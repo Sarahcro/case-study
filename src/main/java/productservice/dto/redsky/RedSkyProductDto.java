@@ -3,8 +3,8 @@ package productservice.dto.redsky;
 import lombok.Data;
 
 @Data
-public class ProductDto {
+public class RedSkyProductDto {
 
   private String tcin;
-  private ItemDto item;
+  private RedSkyItemDto item;
 }
